@@ -43,9 +43,12 @@ function rotateToNextKey(): boolean {
 
 function isQuotaError(error: any): boolean {
   const message = (error?.message || '').toLowerCase();
-  const status = error?.status || error?.statusCode || 0;
+  const status = error?.status || error?.statusCode || error?.error?.code || error?.code || 0;
+  const rawStatus = String(error?.status || '').toLowerCase();
+
   return (
     status === 429 ||
+    rawStatus === 'resource_exhausted' ||
     message.includes('resource_exhausted') ||
     message.includes('quota') ||
     message.includes('rate limit') ||
@@ -55,11 +58,14 @@ function isQuotaError(error: any): boolean {
 
 function isInvalidKeyError(error: any): boolean {
   const message = (error?.message || '').toLowerCase();
-  const status = error?.status || error?.statusCode || 0;
+  const status = error?.status || error?.statusCode || error?.error?.code || error?.code || 0;
+  const rawStatus = String(error?.status || '').toLowerCase();
+
   return (
     status === 400 ||
     status === 401 ||
     status === 403 ||
+    rawStatus === 'invalid_argument' ||
     message.includes('api key not valid') ||
     message.includes('api_key_invalid') ||
     message.includes('invalid api key') ||
