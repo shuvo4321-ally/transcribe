@@ -1,0 +1,5 @@
+{
+  "name": "Manhwa Translator Pro",
+  "description": "Upload a zip of manhwa images to extract and translate speech bubbles into high-quality English text.",
+  "requestFramePermissions": []
+}
