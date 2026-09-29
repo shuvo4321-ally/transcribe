@@ -1,20 +1,40 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Manhwa Translator Pro
 
-# Run and deploy your AI Studio app
+Upload a zip of manhwa images and get the speech bubbles extracted and translated into English text. Built with React and Gemini.
 
-This contains everything you need to run your app locally.
+## How it works
 
-View your app in AI Studio: https://ai.studio/apps/f2af34fc-e4cc-462e-88a8-90b78f732293
+1. Drop a `.zip` of page images onto the app.
+2. Each page is sent to Gemini, which finds the speech bubbles and translates them.
+3. Download the translated text.
 
-## Run Locally
+## Features
 
-**Prerequisites:**  Node.js
+- Drag-and-drop zip upload
+- Page-by-page progress and error reporting
+- **API key rotation**: when one key hits its quota, the app switches to the next one automatically
 
+## Tech stack
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+React, TypeScript, Vite, Tailwind CSS, Gemini (`@google/genai`), JSZip, Motion
+
+## Getting started
+
+Prerequisites: Node.js 18+ and at least one [Gemini API key](https://aistudio.google.com/apikey).
+
+```bash
+npm install
+cp .env.example .env
+```
+
+Set `GEMINI_API_KEY` in `.env`. Optionally add `GEMINI_API_KEY_2` to `GEMINI_API_KEY_5` for automatic rotation.
+
+```bash
+npm run dev     # http://localhost:3000
+```
+
+| Script | What it does |
+|---|---|
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run lint` | Type-check with `tsc` |
